@@ -1,6 +1,6 @@
 /*
   File: FromDefenderToHowler.bicep
-  Version: 1.0
+  Version: 1.1
   Author: piaudonn
   Date: 2025-07-09
 
@@ -8,7 +8,7 @@
   - This template deploys a consumption Logic App that ingests Defender incidents (that include Sentinel incidents) into Howler.
   - You need to provide an API key for Howler and the URL of the Howler API.
   - The Logic App runs every 5 minutes by default, but you can change the recurrence interval. It uses a storage table to keep track of the last ingestion time.
-*/
+  */
 
 @description('Name of the Logic App')
 @maxLength(80)
@@ -25,6 +25,7 @@ param APIURL string = 'https://howler/api/v1/sentinel/ingest'
 @minLength(3)
 @maxLength(24)
 param storageAccountName string = 'trunks'
+
 @description('Name of the table to store the cursor')
 param tableName string = 'SnowyOwlCursor'
 
@@ -189,7 +190,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
             uri: '@{parameters(\'GRAPH_API_BASE\')}/v1.0/security/incidents'
             method: 'GET'
             queries: {
-              '$filter': 'lastUpdateDateTime ge @{body(\'Get_cursor\')[\'value\'][0][\'PointInTime\']}'
+              '$filter': 'lastUpdateDateTime ge @{coalesce(body(\'Get_cursor\')[\'value\'][0][\'PointInTime\'],addHours(utcNow(),-1))}'
               '$expand': 'alerts'
             }
             authentication: {
