@@ -32,7 +32,6 @@ resource logAnalyticsTable 'Microsoft.OperationalInsights/workspaces/tables@2025
   }
 }
 
-
 resource queryRule 'Microsoft.SecurityInsights/alertRules@2023-12-01-preview' = {
   name: guid(logAnalyticsWorkspaceId, queryRuleName)
   scope: logAnalyticsWorkspace

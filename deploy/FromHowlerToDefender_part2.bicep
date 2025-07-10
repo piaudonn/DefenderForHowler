@@ -5,7 +5,6 @@ param logAnalyticsCustomTable string
 param servicePrincipalId string
 param location string = resourceGroup().location
 
-
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
   name: dataCollectionRuleName
   location: location
@@ -54,7 +53,6 @@ resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' 
   }
 }
 
-
 resource dataCollectionRulePublisher 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(dataCollectionRule.id, 'Monitoring Metrics Publisher')
   scope: dataCollectionRule
@@ -64,4 +62,3 @@ resource dataCollectionRulePublisher 'Microsoft.Authorization/roleAssignments@20
     principalType: 'ServicePrincipal'
   }
 }
-
