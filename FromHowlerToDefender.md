@@ -20,10 +20,9 @@ A Bicep file is also available for manual deployment: 💪 [Deploy the solution]
 
 ### Data Collection Rule
 
-There is no API to create an incident in the Graph API. Instead, we ingest custom data in the Sentinel workspace and we trigger incident on that data. To allow ingestion, a custom endpoint is created (it gives us an API endpoint to use in Howler).
+There is no API to create an incident in the Graph API. Instead, we ingest custom data in the Sentinel workspace and we trigger incident on that data. To allow ingestion, a Data Collection Rule of the kind `Direct` is created (it gives us an API endpoint to use). To retrieve the ingestion endpoint, you can look at the json details of the Data Collection Rule in the Azure portal.
 
 Howler also uses a service principal in the destination tenant with the RBAC role *Monitoring Metrics Publisher* to be allowed to send data.
-
 
 ### Near realtime analytic rule
 
@@ -44,5 +43,21 @@ Howler_CL
 | extend Description = RawData.Hit.rule.description
 | extend Source = "Howler"
 ```
+As of today, the following entity mapping is configured:
+
+![Entity mapping](images/entitymapping.png)
+
 
 ### Custom table
+
+The custom table schema is the following:
+
+| Column Name | Type |
+|-|-|
+|TimeGenerated|datetime|
+|Title|string|
+|RawData|dynamic|
+
+Example:
+
+![Custom table sample](images/customtable.png)
