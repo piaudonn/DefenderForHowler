@@ -2,6 +2,8 @@
 
 This repository contains the resources to integrate the Defender platform (including Microsoft Sentinel) with the open-source platform Howler.
 
+![Howler integration overview](images/overview.png)
+
 ### Send Defender incidents to Howler
 
 This synchronization is achieved through a Logic App that reads incidents created or modified in Defender and sends them to Howler.
@@ -15,10 +17,7 @@ The solution deploys the following resources:
 
 It also grants the necessary permissions for the system managed identity to read and modify the table as well as read the secret. 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fpiaudonn%2FDefenderForHowler%2Frefs%2Fheads%2Fmain%2Fdeploy%2FFromDefenderToHowler.json)
-
-A Bicep file is also available for manual deployment: 💪 [Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromDefenderToHowler.bicep)
-
+🦉 Details and deployment steps are available here: [Send Defender incidents to Howler](FromDefenderToHowler.md)
 
 ### Send Howler hits to Defender (Sentinel ingestion)
 
@@ -26,8 +25,5 @@ It is possible to configure Howler to send hits to Defender through custom log i
 
 The solution will deploy a Data Collection Rule, a Log Analytic custom table and an Analytic Rule in Sentinel. You will need to provide the workspace used by Sentinel as well as service principal that you have configured on the Howler side of this integration.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromHowlerToDefender_main.json)
-
-A Bicep file is also available for manual deployment: 💪 [Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromHowlerToDefender_main.bicep)
-
+🦉 Details and deployment steps are available here: [Send Howler hits to Defender](FromHowlerToDefender.md)
 
