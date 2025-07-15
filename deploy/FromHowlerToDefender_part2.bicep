@@ -3,7 +3,7 @@ param logAnalyticsWorkspaceResourceId string
 param logAnalyticsWorkspaceId string 
 param logAnalyticsCustomTable string 
 param servicePrincipalId string
-param location string = resourceGroup().location
+var location string = resourceGroup().location
 
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
   name: dataCollectionRuleName

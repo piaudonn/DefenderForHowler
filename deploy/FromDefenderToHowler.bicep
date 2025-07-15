@@ -32,7 +32,7 @@ param tableName string = 'SnowyOwlCursor'
 @description('Recurrence interval in minutes for the Logic App')
 param recurrenceInterval int = 5
 
-param location string = resourceGroup().location
+var location string = resourceGroup().location
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2024-01-01' = {
   name: storageAccountName

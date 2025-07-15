@@ -5,33 +5,51 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "4996157290672842581"
+      "templateHash": "15675719898144748898"
     }
   },
   "parameters": {
     "dataCollectionRuleName": {
       "type": "string",
-      "defaultValue": "DCR-Howler"
+      "defaultValue": "DCR-Howler",
+      "metadata": {
+        "description": "Name of the Data Collection Rule"
+      }
     },
     "logAnalyticsWorkspaceResourceId": {
       "type": "string",
-      "defaultValue": "/subscriptions/397cdfbc-d326-412f-acdd-f3a40db4aaee/resourceGroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/briandel"
+      "defaultValue": "/subscriptions/397cdfbc-d326-412f-acdd-f3a40db4aaee/resourceGroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/briandel",
+      "metadata": {
+        "description": "Resource ID of the Log Analytics Workspace where Sentinel is enabled"
+      }
     },
     "logAnalyticsWorkspaceId": {
       "type": "string",
-      "defaultValue": "6ba2759c-1c00-4aa0-88e8-138379ea383c"
+      "defaultValue": "6ba2759c-1c00-4aa0-88e8-138379ea383c",
+      "metadata": {
+        "description": "Workspace ID of the Log Analytics Workspace where Sentinel is enabled"
+      }
     },
     "logAnalyticsCustomTable": {
       "type": "string",
-      "defaultValue": "Howler_CL"
+      "defaultValue": "Howler_CL",
+      "metadata": {
+        "description": "Name of the custom table for howler hit (it needs to ends with _CL)"
+      }
     },
     "queryRuleName": {
       "type": "string",
-      "defaultValue": "Create Incident from Hit"
+      "defaultValue": "Create Incident from Hit",
+      "metadata": {
+        "description": "Name of the analytic rule in Sentinel that will create an incident from a howler hit"
+      }
     },
     "servicePrincipalId": {
       "type": "string",
-      "defaultValue": "b3f0c8d2-1a4e-4b5c-9f6d-7c8e1f2a3b4c"
+      "defaultValue": "b3f0c8d2-1a4e-4b5c-9f6d-7c8e1f2a3b4c",
+      "metadata": {
+        "description": "Client ID of the service principal that will be used to send data from Howler"
+      }
     }
   },
   "variables": {
@@ -250,12 +268,13 @@
         },
         "template": {
           "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.0",
           "contentVersion": "1.0.0.0",
           "metadata": {
             "_generator": {
               "name": "bicep",
               "version": "0.36.177.2456",
-              "templateHash": "246217788775919728"
+              "templateHash": "1734472686552852292"
             }
           },
           "parameters": {
@@ -273,18 +292,17 @@
             },
             "servicePrincipalId": {
               "type": "string"
-            },
-            "location": {
-              "type": "string",
-              "defaultValue": "[resourceGroup().location]"
             }
           },
-          "resources": [
-            {
+          "variables": {
+            "location": "[resourceGroup().location]"
+          },
+          "resources": {
+            "dataCollectionRule": {
               "type": "Microsoft.Insights/dataCollectionRules",
               "apiVersion": "2023-03-11",
               "name": "[parameters('dataCollectionRuleName')]",
-              "location": "[parameters('location')]",
+              "location": "[variables('location')]",
               "kind": "Direct",
               "properties": {
                 "streamDeclarations": {
@@ -329,7 +347,7 @@
                 ]
               }
             },
-            {
+            "dataCollectionRulePublisher": {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
               "scope": "[format('Microsoft.Insights/dataCollectionRules/{0}', parameters('dataCollectionRuleName'))]",
@@ -340,10 +358,10 @@
                 "principalType": "ServicePrincipal"
               },
               "dependsOn": [
-                "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
+                "dataCollectionRule"
               ]
             }
-          ]
+          }
         }
       },
       "dependsOn": [

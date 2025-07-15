@@ -15,7 +15,7 @@ The solution deploys the following resources:
 
 It also grants the necessary permissions for the system managed identity to read and modify the table as well as read the secret. 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromDefenderToHowler.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fpiaudonn%2FDefenderForHowler%2Frefs%2Fheads%2Fmain%2Fdeploy%2FFromDefenderToHowler.json)
 
 A Bicep file is also available for manual deployment: [💪 Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromDefenderToHowler.bicep)
 
