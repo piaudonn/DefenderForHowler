@@ -17,7 +17,7 @@ It also grants the necessary permissions for the system managed identity to read
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fpiaudonn%2FDefenderForHowler%2Frefs%2Fheads%2Fmain%2Fdeploy%2FFromDefenderToHowler.json)
 
-A Bicep file is also available for manual deployment: [💪 Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromDefenderToHowler.bicep)
+A Bicep file is also available for manual deployment: 💪 [Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromDefenderToHowler.bicep)
 
 
 ### Send Howler hits to Defender (Sentinel ingestion)
@@ -28,6 +28,6 @@ The solution will deploy a Data Collection Rule, a Log Analytic custom table and
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromHowlerToDefender_main.json)
 
-A Bicep file is also available for manual deployment: [💪 Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromHowlerToDefender_main.bicep)
+A Bicep file is also available for manual deployment: 💪 [Deploy the solution](https://raw.githubusercontent.com/piaudonn/DefenderForHowler/refs/heads/main/deploy/FromHowlerToDefender_main.bicep)
 
 
