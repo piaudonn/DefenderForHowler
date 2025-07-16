@@ -15,15 +15,15 @@ The solution deploys the following resources:
 - A Storage Account to store the cursor in a table
 - A Keyvault to store the secret for Howler ingestion API
 
-It also grants the necessary permissions for the system managed identity to read and modify the table as well as read the secret. 
+It also grants the necessary permissions to the system managed identity the permission to read and modify the table as well as read the secret. 
 
 🦉 Details and deployment steps are available here: [Send Defender incidents to Howler](FromDefenderToHowler.md)
 
 ### Send Howler hits to Defender (Sentinel ingestion)
 
-It is possible to configure Howler to send hits to Defender through custom log ingestion in the Log Analytics workspace used by Sentinel. To make it possible, a Data Collection Rule is create in Azure Monitor that maps to a custom table in Log Analytics. Then, a near-realtime analytics rule in Sentinel is configure to create an incident as soon as data arrives in this table.
+It is possible to configure Howler to send hits to Defender through custom log ingestion in the Log Analytics workspace used by Sentinel. To enable this, a Data Collection Rule (DCR) is created in Azure Monitor that maps incoming data to a custom table in Log Analytics. Then, a near real-time analytics rule in Sentinel is configured to create an incident as soon as data arrives in this table.
 
-The solution will deploy a Data Collection Rule, a Log Analytic custom table and an Analytic Rule in Sentinel. You will need to provide the workspace used by Sentinel as well as service principal that you have configured on the Howler side of this integration.
+The solution deploys a Data Collection Rule, a custom Log Analytics table, and an analytics rule in Sentinel. You will need to provide the Log Analytics workspace used by Sentinel, as well as the service principal that you have configured on the Howler side of the integration.
 
 🦉 Details and deployment steps are available here: [Send Howler hits to Defender](FromHowlerToDefender.md)
 
